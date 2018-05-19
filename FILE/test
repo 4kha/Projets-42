@@ -1,0 +1,11 @@
+10
+##start
+debut 10 10
+##end
+fin 12 12
+haut 17 17
+bas 18 18
+debut-haut
+debut-bas
+bas-fin
+haut-fin
