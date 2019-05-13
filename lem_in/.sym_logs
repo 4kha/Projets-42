@@ -1,9 +1,0 @@
-0000000100001f69	e8 a0 2e 00 00 	callq	0x100004e0e ## symbol stub for: _malloc
-0000000100003d02	e8 07 11 00 00 	callq	0x100004e0e ## symbol stub for: _malloc
-000000010000402a	e8 df 0d 00 00 	callq	0x100004e0e ## symbol stub for: _malloc
-000000010000406b	e8 9e 0d 00 00 	callq	0x100004e0e ## symbol stub for: _malloc
-0000000100004597	e8 72 08 00 00 	callq	0x100004e0e ## symbol stub for: _malloc
-0000000100004673	e8 96 07 00 00 	callq	0x100004e0e ## symbol stub for: _malloc
-0000000100004776	e8 93 06 00 00 	callq	0x100004e0e ## symbol stub for: _malloc
-0000000100004b1f	e8 ea 02 00 00 	callq	0x100004e0e ## symbol stub for: _malloc
-0000000100004d2f	e8 da 00 00 00 	callq	0x100004e0e ## symbol stub for: _malloc
