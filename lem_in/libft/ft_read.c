@@ -6,20 +6,20 @@
 /*   By: khtran <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 06:30:23 by khtran            #+#    #+#             */
-/*   Updated: 2017/11/24 02:22:06 by khtran           ###   ########.fr       */
+/*   Updated: 2018/06/24 01:42:34 by khtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	char	*ft_strjoin_and_free(char *s1, char *s2, int ret, int *clen)
+static	char	*ft_strjoin_and_read(char *s1, char *s2, int ret, int *clen)
 {
 	char	*str;
 
 	(*clen) = (*clen) + ret;
 	str = (char*)malloc(sizeof(char) * ((*clen) + 1));
 	if (str == NULL)
-		return (NULL);
+		exit(0);
 	str[(*clen)] = '\0';
 	str = ft_strcpy(str, s1);
 	str = ft_strcat(str, s2);
@@ -40,7 +40,7 @@ char			*ft_read(int fd)
 	while ((ret = read(fd, buffer, BUFF_SIZE)) > 0)
 	{
 		buffer[ret] = '\0';
-		new = ft_strjoin_and_free(new, buffer, ret, &clen);
+		new = ft_strjoin_and_read(new, buffer, ret, &clen);
 		if (new == NULL)
 			return (NULL);
 	}

@@ -1,0 +1,8 @@
+#!/bin/bash
+SUM=$(md5sum /etc/crontab)
+LOG=$(cat /var/log/crontab.log)
+
+if [ "$LOG" != "$SUM" ]; then
+md5sum /etc/crontab > /var/log/crontab.log
+mail -s "The file crontab was modified" root@localhost.com < /etc/crontab
+fi

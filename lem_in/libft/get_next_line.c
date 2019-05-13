@@ -6,7 +6,7 @@
 /*   By: khtran <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 21:22:07 by khtran            #+#    #+#             */
-/*   Updated: 2018/04/30 15:29:40 by khtran           ###   ########.fr       */
+/*   Updated: 2018/05/15 14:46:24 by khtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,25 +54,6 @@ static	int			ft_copy_line(char **line, char *src)
 	return (len);
 }
 
-static	char		*ft_strjoin_and_free(char *s1, char *s2)
-{
-	size_t			len;
-	char			*str;
-
-	if (s1 == NULL || s2 == NULL)
-		return (NULL);
-	len = ft_strlen(s1) + ft_strlen(s2);
-	str = (char*)malloc(sizeof(char) * (len + 1));
-	if (str == NULL)
-		exit(0);
-	str[len] = 0;
-	str = ft_strcpy(str, s1);
-	str = ft_strcat(str, s2);
-	if (s1)
-		free(s1);
-	return (str);
-}
-
 static	void		ft_decal_n_free(int size, t_list **new)
 {
 	char	*tmp;
@@ -91,6 +72,22 @@ static	void		ft_decal_n_free(int size, t_list **new)
 		free(tmp);
 		(*new)->content = tmp2;
 	}
+}
+
+static int			gnl_ret(char **line, t_list **new, t_list **start, int ret)
+{
+	int				a;
+
+	a = 0;
+	if ((a = ft_copy_line(line, (*new)->content)) == -1 || ret == -1)
+		return (-1);
+	if (ret == 0 && ft_strlen((*new)->content) == 0)
+	{
+		ft_lstdelone(start, *new);
+		return (0);
+	}
+	ft_decal_n_free(a, new);
+	return (1);
 }
 
 int					get_next_line(const int fd, char **line)
@@ -114,10 +111,5 @@ int					get_next_line(const int fd, char **line)
 		if (ft_strchr(new->content, '\n') != NULL)
 			break ;
 	}
-	if ((a = ft_copy_line(line, new->content)) == -1 || ret == -1)
-		return (-1);
-	if (ret == 0 && ft_strlen(new->content) == 0)
-		return (0);
-	ft_decal_n_free(a, &new);
-	return (1);
+	return (gnl_ret(line, &new, &start, ret));
 }

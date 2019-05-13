@@ -6,20 +6,13 @@
 /*   By: khtran <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 18:30:26 by khtran            #+#    #+#             */
-/*   Updated: 2018/05/04 18:57:34 by khtran           ###   ########.fr       */
+/*   Updated: 2018/06/22 01:57:41 by khtran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
-void	ft_error_atoi(void)
-{
-	ft_putstr_fd("Error\n", 2);
-	exit(0);
-}
-
-int		ft_atoi(const char *str)
+long int	ft_atoi(const char *str)
 {
 	long int	result;
 	int			index;
@@ -41,9 +34,7 @@ int		ft_atoi(const char *str)
 		result = (result * 10) + (str[index++] - '0');
 		if ((result > 2147483647 && is_neg == 1)
 				|| (result > 2147483648 && is_neg == -1))
-			ft_error_atoi();
+			return (123456789123);
 	}
-	if (result == -2147483648)
-		return (-2147483648);
 	return (is_neg * result);
 }
